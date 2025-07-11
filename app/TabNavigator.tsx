@@ -1,12 +1,17 @@
+// app/TabNavigator.tsx
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
-import { Tabs } from 'expo-router';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 
-export default function TabLayout() {
+const Tab = createBottomTabNavigator();
+
+const Placeholder = () => <View style={{ flex: 1, backgroundColor: '#0f172a' }} />;
+
+export default function TabNavigator() {
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
@@ -23,6 +28,10 @@ export default function TabLayout() {
           paddingBottom: 10,
           paddingTop: 10,
           borderTopWidth: 0,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.2,
+          shadowRadius: 10,
         },
         tabBarBackground: () =>
           Platform.OS === 'ios' ? (
@@ -32,10 +41,10 @@ export default function TabLayout() {
           ),
         tabBarIcon: ({ focused }) => {
           const icons: Record<string, string> = {
-            home: 'home',
-            trends: 'chart-line',
-            devices: 'microchip',
-            profile: 'user',
+            Home: 'home',
+            Trends: 'chart-line',
+            Devices: 'microchip',
+            Profile: 'user',
           };
           return (
             <FontAwesome5
@@ -50,10 +59,10 @@ export default function TabLayout() {
         tabBarInactiveTintColor: '#9ca3af',
       })}
     >
-      <Tabs.Screen name="home" />
-      <Tabs.Screen name="trends" />
-      <Tabs.Screen name="devices" />
-      <Tabs.Screen name="profile" />
-    </Tabs>
+      <Tab.Screen name="Home" component={Placeholder} />
+      <Tab.Screen name="Trends" component={Placeholder} />
+      <Tab.Screen name="Devices" component={Placeholder} />
+      <Tab.Screen name="Profile" component={Placeholder} />
+    </Tab.Navigator>
   );
 }
