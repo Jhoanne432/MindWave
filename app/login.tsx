@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import { Feather } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import {
-  View,
+  Alert,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  Alert,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
+  View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-
-
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -108,10 +106,12 @@ export default function LoginScreen() {
 
             <Text style={styles.footerText}>
               Don't have an account?{' '}
-              <TouchableOpacity onPress={() => router.push('/signup')}>
-              <Text style={styles.signupText}>Sign Up</Text>
-            </TouchableOpacity>
-
+              <Text 
+                style={styles.signupText}
+                onPress={() => router.push('/signup')}
+              >
+                Sign Up
+              </Text>
             </Text>
           </View>
         </ScrollView>
