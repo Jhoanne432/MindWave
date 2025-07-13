@@ -1,0 +1,5 @@
+pandas
+numpy
+scikit-learn
+imblearn
+tensorflow>=2.9

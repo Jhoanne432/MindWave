@@ -16,7 +16,14 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "permissions": [
+        "android.permission.health.READ_HEART_RATE",
+        "android.permission.health.READ_OXYGEN_SATURATION",
+        "android.permission.health.READ_SLEEP",
+        "android.permission.health.READ_STEPS"
+      ],
+      "edgeToEdgeEnabled": true,
+      "package": "com.storeblues123.MindWave"
     },
     "web": {
       "bundler": "metro",
@@ -25,6 +32,19 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-health-connect"
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "minSdkVersion": 26
+          }
+        }
+      ],
       [
         "expo-splash-screen",
         {

@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import { Tabs } from 'expo-router';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
+import { Tabs } from 'expo-router';
+import { Platform, StyleSheet, View } from 'react-native';
 
 export default function TabLayout() {
   return (
@@ -36,6 +35,7 @@ export default function TabLayout() {
             trends: 'chart-line',
             devices: 'microchip',
             profile: 'user',
+            health: 'heartbeat'
           };
           return (
             <FontAwesome5
@@ -54,6 +54,7 @@ export default function TabLayout() {
       <Tabs.Screen name="trends" />
       <Tabs.Screen name="devices" />
       <Tabs.Screen name="profile" />
+      <Tabs.Screen name="health" />
     </Tabs>
   );
 }
