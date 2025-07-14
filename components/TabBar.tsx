@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { PlatformPressable, Text } from '@react-navigation/elements';
 import { useLinkBuilder, useTheme } from '@react-navigation/native';
@@ -6,6 +7,36 @@ import { StyleSheet, View } from 'react-native';
 const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
     const { colors } = useTheme();
     const { buildHref } = useLinkBuilder();
+
+    const getTabIcon = (routeName: string, isFocused: boolean) => {
+        let iconName: keyof typeof Ionicons.glyphMap;
+        
+        switch (routeName) {
+            case 'index':
+                iconName = isFocused ? 'home' : 'home-outline';
+                break;
+            case 'trends':
+                iconName = isFocused ? 'trending-up' : 'trending-up-outline';
+                break;
+            case 'devices':
+                iconName = isFocused ? 'hardware-chip' : 'hardware-chip-outline';
+                break;
+            case 'profile':
+                iconName = isFocused ? 'person' : 'person-outline';
+                break;
+            default:
+                iconName = 'ellipse-outline';
+        }
+        
+        return (
+            <Ionicons 
+                name={iconName} 
+                size={20} 
+                color="white" 
+                style={{ fontWeight: isFocused ? 'bold' : 'normal' }}
+            />
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -50,7 +81,8 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
                         onLongPress={onLongPress}
                         style={styles.tabItem}
                     >
-                        <Text style={{ fontWeight: isFocused ? 'bold' : 'normal' }}>
+                        {getTabIcon(route.name, isFocused)}
+                        <Text style={[styles.tabItemText, { fontWeight: isFocused ? 'bold' : 'normal' }]}>
                             {label as string}
                         </Text>
                     </PlatformPressable>
@@ -68,18 +100,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#6767EE',
-        width: '80%',
+        backgroundColor: 'rgba(30, 41, 59, 0.4)',
+        width: '85%',
         alignSelf: 'center',
-        bottom: 40,
-        borderRadius: 28,
-        paddingHorizontal: 24,
+        bottom: 30,
+        borderRadius: 20,
+        paddingHorizontal: 28,
         paddingVertical: 8,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.3)',
     },
     tabItem: {
-        flexDirection: 'row',
-        height: 30,
+        flexDirection: 'column',
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        gap: 2,
+    },
+    tabItemText: {
+        paddingHorizontal: 4,
+        color: 'white',
+        fontSize: 12,
     }
 })

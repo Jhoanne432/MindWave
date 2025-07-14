@@ -1,7 +1,11 @@
+import { AuthContextProvider } from "@/context/authContext";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
 import { useColorScheme } from "react-native";
+
+
 export default function RootLayout() {
   
   const colorScheme = useColorScheme();
@@ -10,9 +14,21 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   })
 
+  useEffect(() => {
+    if (loadFonts) {
+      SplashScreen.hideAsync();
+    }
+  }, [loadFonts]);
+
+  if (!loadFonts) {
+    return null;
+  }
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerShown: false}}/>
+      <AuthContextProvider>
+        <Stack screenOptions={{ headerShown: false}}/>
+      </AuthContextProvider>
     </ThemeProvider>
   )
 }
