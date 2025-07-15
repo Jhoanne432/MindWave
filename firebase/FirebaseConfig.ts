@@ -12,6 +12,23 @@ const firebaseConfig = {
     appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID || Constants.expoConfig?.extra?.firebaseAppId
 };
 
+// Debug: Log configuration (without exposing sensitive data)
+console.log('Firebase Config Debug:', {
+    hasApiKey: !!firebaseConfig.apiKey,
+    authDomain: firebaseConfig.authDomain,
+    projectId: firebaseConfig.projectId,
+    hasAppId: !!firebaseConfig.appId
+});
+
+// Validate required fields
+const requiredFields = ['apiKey', 'authDomain', 'projectId', 'appId'];
+const missingFields = requiredFields.filter(field => !firebaseConfig[field as keyof typeof firebaseConfig]);
+
+if (missingFields.length > 0) {
+    console.error('Missing Firebase configuration fields:', missingFields);
+    throw new Error(`Missing Firebase configuration: ${missingFields.join(', ')}`);
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -20,5 +37,7 @@ export const auth = getAuth(app);
 
 // Initialize Firestore
 export const db = getFirestore(app);
+
+console.log('Firebase initialized successfully');
 
 export default app;

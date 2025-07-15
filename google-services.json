@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "702262275981",
+    "project_id": "mindwave-3e04f",
+    "storage_bucket": "mindwave-3e04f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702262275981:android:aa7fe5bf115bc0f31a97c4",
+        "android_client_info": {
+          "package_name": "com.storeblues123.MindWave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702262275981-ih5jaljs3ksvvgsg7mau2b6n7ag3rhav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq9vkd0cCgTpGa_z9molBUZgNYqe2AA8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702262275981-ih5jaljs3ksvvgsg7mau2b6n7ag3rhav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
